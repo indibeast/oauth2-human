@@ -8,14 +8,14 @@ use Psr\Http\Message\ResponseInterface;
 
 class Human extends AbstractProvider{
 
+    public $domain = 'http://human.dev';
+
+    public $apiDomain = 'http://api.human.dev';
+
+
     public function getBaseAuthorizationUrl()
     {
-        // TODO: Implement getBaseAuthorizationUrl() method.
-    }
-
-    public function getBaseAccessTokenUrl()
-    {
-        // TODO: Implement getBaseAccessTokenUrl() method.
+        return $this->domain.'/oauth/authorize';
     }
 
     public function getUserDetailsUrl(AccessToken $token)
@@ -33,7 +33,7 @@ class Human extends AbstractProvider{
      */
     protected function getDefaultScopes()
     {
-        // TODO: Implement getDefaultScopes() method.
+        return [];
     }
 
     /**
@@ -59,5 +59,27 @@ class Human extends AbstractProvider{
     protected function createUser(array $response, AccessToken $token)
     {
         // TODO: Implement createUser() method.
+    }
+
+    public function getBaseAccessTokenUrl(array $params)
+    {
+        return $this->domain.'/oauth/access_token';
+    }
+
+    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    {
+        // TODO: Implement getResourceOwnerDetailsUrl() method.
+    }
+
+    /**
+     * Generate a resource owner object from a successful resource owner details request.
+     *
+     * @param object $response
+     * @param AccessToken $token
+     * @return League\OAuth2\Client\Provider\ResourceOwnerInterface
+     */
+    protected function createResourceOwner(array $response, AccessToken $token)
+    {
+        // TODO: Implement createResourceOwner() method.
     }
 }
