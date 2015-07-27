@@ -80,6 +80,6 @@ class Human extends AbstractProvider{
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        // TODO: Implement createResourceOwner() method.
+        //return  new HumanUser($response);
     }
 }
