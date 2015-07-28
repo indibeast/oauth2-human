@@ -16,30 +16,31 @@ $provider = new \Human\OAuth2\Client\Provider\Human([
 
 ]);
 
-if(!isset($_GET['code'])) {
+if (!isset($_GET['code'])) {
 
     $authurl = $provider->getAuthorizationUrl();
     $_SESSION['oauth2state'] = $provider->getState();
     header('Location: '.$authUrl);
-     exit;
+    exit;
 
- }elseif(empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])){
+ }  (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])){
 
     unset($_SESSION['oauth2state']);
     exit('Invalid state');
 
- }else{
+ } else {
 
      $token = $provider->getAccessToken('authorization_code', [
                  'code' => $_GET['code']
      ]);
 
-     try{
+     try {
+
         $client = new Client($token);
         $user   = $client->getResourceOwner();
-
         echo $user->getFirstName();
-     } catch(Exception $e) {
+
+     } catch (Exception $e) {
 
         echo "Oops!..."
      }
