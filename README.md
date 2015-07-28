@@ -15,6 +15,31 @@ $provider = new \Human\OAuth2\Client\Provider\Human([
     'redirectUri'   => 'https://your-registered-redirect-uri/',
 
 ]);
+
+if(!isset($_GET['code'])) {
+
+    $authurl = $provider->getAuthorizationUrl();
+    $_SESSION['oauth2state'] = $provider->getState();
+    header('Location: '.$authUrl);
+     exit;
+
+ }elseif(is_null($request->get('state')) || ($request->get('state') !== session('oauth2state'))){
+
+    unset($_SESSION['oauth2state']);
+    exit('Invalid state');
+
+ }else{
+
+     $token = $provider->getAccessToken('authorization_code', [
+                 'code' => $_GET['code']
+     ]);
+
+     $client = new Client($token);
+     $user   = $client->getResourceOwner();
+
+     echo $user->getFirstName();
+
+ }
 ```
 
 ## License
