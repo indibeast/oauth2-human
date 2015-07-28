@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: virajabayarathna
- * Date: 7/27/15
- * Time: 1:27 PM
- */
-
 namespace Human\OAuth2\Client\Provider;
-
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 

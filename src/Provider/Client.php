@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: virajabayarathna
- * Date: 7/27/15
- * Time: 1:45 PM
- */
-
 namespace Human\OAuth2\Client\Provider;
-
 
 use Human\OAuth2\Client\Exception\HumanClientException;
 use League\OAuth2\Client\Token\AccessToken;
