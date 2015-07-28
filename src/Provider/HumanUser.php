@@ -16,7 +16,7 @@ class HumanUser implements ResourceOwnerInterface{
     protected $data;
 
 
-    public function __construct(array $response)
+    public function __construct($response)
     {
         $this->data =  $response;
     }
@@ -31,8 +31,23 @@ class HumanUser implements ResourceOwnerInterface{
         return $this->getField('id');
     }
 
+    public function getFirstName()
+    {
+        return $this->getField('first_name');
+    }
+
+    public function getLastName()
+    {
+        return $this->getField('last_name');
+    }
+
+    public function getEmail()
+    {
+        return $this->getField('email');
+    }
+
     private function getField($key)
     {
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        return isset($this->data->$key) ? $this->data->$key : null;
     }
 }
