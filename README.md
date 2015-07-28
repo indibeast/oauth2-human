@@ -23,7 +23,7 @@ if(!isset($_GET['code'])) {
     header('Location: '.$authUrl);
      exit;
 
- }elseif(is_null($request->get('state')) || ($request->get('state') !== session('oauth2state'))){
+ }elseif(empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])){
 
     unset($_SESSION['oauth2state']);
     exit('Invalid state');
@@ -34,10 +34,15 @@ if(!isset($_GET['code'])) {
                  'code' => $_GET['code']
      ]);
 
-     $client = new Client($token);
-     $user   = $client->getResourceOwner();
+     try{
+        $client = new Client($token);
+        $user   = $client->getResourceOwner();
 
-     echo $user->getFirstName();
+        echo $user->getFirstName();
+     } catch(Exception $e) {
+
+        echo "Oops!..."
+     }
 
  }
 ```
