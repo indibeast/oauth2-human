@@ -6,7 +6,7 @@ use League\OAuth2\Client\Token\AccessToken;
 
 class Client {
 
-    static protected $baseUrl = 'http:/human.dev/api/v1/';
+    static protected $baseUrl = 'http://human.dev/api/v1/';
     protected $guzzleClient;
     public $accessToken;
 
