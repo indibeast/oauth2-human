@@ -16,7 +16,7 @@ class Human extends AbstractProvider{
 
     public function __construct(array $options = [], array $collaborators = [])
     {
-        self::__construct($options,$collaborators);
+        parent::__construct($options,$collaborators);
         if (!isset($options['account'])) {
             throw new HumanClientException('Account must be supllied');
         }
