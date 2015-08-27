@@ -14,6 +14,7 @@ class HumanTest extends \PHPUnit_Framework_TestCase{
         $this->provider = new Human(
             [
                 'clientId'      => '123456789',
+                'account'       => 'malkey'
             ]
         );
     }
@@ -24,6 +25,7 @@ class HumanTest extends \PHPUnit_Framework_TestCase{
         $provider = new Human(
             [
                 'clientId'      => '123456789',
+                'account'       => 'malkey'
             ]
         );
 
