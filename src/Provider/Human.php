@@ -1,5 +1,6 @@
 <?php
 namespace Human\OAuth2\Client\Provider;
+use Human\OAuth2\Client\Exception\HumanClientException;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\League;
@@ -8,11 +9,19 @@ use Psr\Http\Message\ResponseInterface;
 
 class Human extends AbstractProvider{
 
-    public $domain = 'http://human.dev';
+    public $domain = 'http://{account}.rype3.net/account';
 
     public $apiDomain = 'http://api.human.dev';
 
 
+    public function __construct(array $options = [], array $collaborators = [])
+    {
+        self::__construct($options,$collaborators);
+        if (!isset($options['account'])) {
+            throw new HumanClientException('Account must be supllied');
+        }
+        $this->changeDomainUrl($options['account']);
+    }
     public function getBaseAuthorizationUrl()
     {
         return $this->domain.'/oauth/authorize';
@@ -81,5 +90,10 @@ class Human extends AbstractProvider{
     protected function createResourceOwner(array $response, AccessToken $token)
     {
         //return  new HumanUser($response);
+    }
+
+    protected function changeDomainUrl($domain)
+    {
+        $this->domain = str_replace('{account}',$domain,$this->domain);
     }
 }
