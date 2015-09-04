@@ -6,14 +6,17 @@ use League\OAuth2\Client\Token\AccessToken;
 
 class Client {
 
-    static protected $baseUrl = 'http://human.dev/api/v1/';
+    static protected $baseUrl = 'http://{account}.rype3.net/human/api/v1';
     protected $guzzleClient;
     public $accessToken;
 
-    public function __construct($accessToken)
+    public function __construct($accessToken,$domain)
     {
+        if(!isset($domain)) {
+            throw new HumanClientException('Rype3 account domain required');
+        }
         $this->guzzleClient = new \GuzzleHttp\Client([
-                'base_uri' => static::$baseUrl,
+                'base_uri' => str_replace('{account}',$domain,static::$baseUrl),
                 'headers'  =>[
                     'Oauth-Token' => $accessToken
                 ]
@@ -58,4 +61,5 @@ class Client {
     {
         return $body ? json_decode($response->getBody()) : $response;
     }
+
 } 
