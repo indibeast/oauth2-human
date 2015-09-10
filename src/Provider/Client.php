@@ -6,7 +6,8 @@ use League\OAuth2\Client\Token\AccessToken;
 
 class Client {
 
-    static protected $baseUrl = 'http://{account}.rype3.net/human/api/v1';
+    static protected $baseUrl = 'http://{account}.rype3.net/';
+    static protected $apipath = 'human/api/v1';
     protected $guzzleClient;
     public $accessToken;
 
@@ -27,7 +28,7 @@ class Client {
 
     public function getResourceOwner()
     {
-        $path   = 'me';
+        $path   = self::$apipath.'/me';
         $output = $this->output($this->guzzleClient->get($path));
 
         if($output->status){
