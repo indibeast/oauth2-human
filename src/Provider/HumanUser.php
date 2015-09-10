@@ -42,4 +42,16 @@ class HumanUser implements ResourceOwnerInterface{
     {
         return isset($this->data->$key) ? $this->data->$key : null;
     }
+
+    /**
+     * Return all of the owner details available as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        // TODO: Implement toArray() method.
+
+        return [];
+    }
 }

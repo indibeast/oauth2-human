@@ -24,7 +24,7 @@ if (!isset($_GET['code'])) {
     header('Location: '.$authUrl);
     exit;
 
- }  (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])){
+ } elseif (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])){
 
     unset($_SESSION['oauth2state']);
     exit('Invalid state');
