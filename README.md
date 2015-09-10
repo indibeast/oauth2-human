@@ -13,6 +13,7 @@ $provider = new \Human\OAuth2\Client\Provider\Human([
     'clientId'      => 'XXXXXXXX',
     'clientSecret'  => 'XXXXXXXX',
     'redirectUri'   => 'https://your-registered-redirect-uri/',
+    'account'       => 'XXXXX'
 
 ]);
 
