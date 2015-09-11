@@ -39,6 +39,24 @@ class Client {
         throw new HumanClientException($output->errors->message);
     }
 
+    public function getUsers(array $data)
+    {
+         $path = self::$apipath.'/people/tags?';
+         $query = implode('&', array_map(function ($v, $k) { return $k . '=' . $v; }, $data, array_keys($data)));
+         $output = $this->output($this->guzzleClient->get($path.$query));
+
+        if($output->status) {
+             $users = [];
+             foreach ($output->result->users as $user) {
+                 array_push($users,new HumanUser($user));
+             }
+
+            return $users;
+        }
+
+        throw new HumanClientException($output->errors->message);
+    }
+
     public function postTask($user,$duedate,$startdate,$desc)
     {
         $path   = 'tasks';
