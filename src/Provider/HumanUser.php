@@ -52,6 +52,6 @@ class HumanUser implements ResourceOwnerInterface{
     {
         // TODO: Implement toArray() method.
 
-        return [];
+        return $this->data;
     }
 }
